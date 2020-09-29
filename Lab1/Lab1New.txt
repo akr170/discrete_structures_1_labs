@@ -1,0 +1,36 @@
+Lab 1
+
+Introduction
+
+This assignment is designed to reinforce your understanding of valid and invalid arguments.  Your task is to create a C++ program that produces the truth table for an argument, and determines if the argument is valid.  If the argument is not valid, the program will identify which row(s) of the truth table indicate an invalid argument.
+
+Submission
+
+You should submit a single source code file named main.cpp that contains all of the C++ code required to complete this assignment.  Do not submit any executable files, any Visual Studio project files, or any data files.  Your dropbox should contain nothing except the main.cpp file.
+
+Instructions
+
+Given the argument:
+
+Premise: (P v Q -> R) ^ (~Q <=> P) ^ ((~R v Q) XOR P)
+Conclusion: (~Q ^ R)
+
+
+In this example the premise is one single statement, albeit a long, complicated one.  
+
+Create a C++ program that generates the truth table for this argument, and indicates if the argument is valid or invalid.  If the argument is invalid, identify the row(s) in the truth table that prove the argument is not valid.  
+
+The program should contain one function to evaluate the premise and another function to evaluate the conclusion.  Each function will have three parameters, P,Q, and R and will return either TRUE or FALSE.  (The function to evaluate the conclusion MUST have three parameters even though this particular conclusion only contains two variables.)  The main program will call each of these functions 8 times, one for each line of the truth table.  You can use the C++ boolean operators for AND, OR, etc but you may need to write two more functions, one function to determine the truth value for the conditional, IF-THEN and one function for the bi-conditional, IF-AND-ONLY-IF.  
+
+The program should NOT ask the user for any input.  The premise and conclusion will be written into your code.  However, I will go into your code and edit it slightly to test a different premise and conclusion.  I will make very small changes to the code.  For example I might change the OR into an AND, or I might replace a P with a Q.  The program should still generate the correct truth table and determine whether this new argument is valid or not.   Your program must have comments to tell me which lines to edit to change the premise and which lines to edit to change the conclusion.  It will be helpful if you can code the premise into a single line of code. 
+
+The truth table must print out in the order shown in my output and be formatted in a manner similar to mine.   
+
+I recommend generating the truth table for this argument by hand so you can test whether your code works or not.  Remember an argument is either valid or invalid.  We do not describe an argument as being valid for some inputs and invalid for others.  
+
+Hints:  Before programming in the argument above, you might want to program a very simple argument to test your code. An example argument might be the following (which is not valid):
+
+Premise: (P ^ R) -> Q
+Conclusion: Q V R 
+
+
