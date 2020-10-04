@@ -1,0 +1,28 @@
+Lab 2
+
+In Lab 2 you will write a C++ program that simulates the full-adder circuitry in the book.  The program will read two 8 bit strings of binary digits and add them bit by bit by calling the full-adder routine.
+
+In order to simulate the full-adder, you will need a routine that simulates a half-adder.  The full-adder routine will need to call the half-adder routine twice.  The main program will call the full-adder routine to perform the addition.  (It will NOT call the half-adder routine.)  
+ 
+The program should implement functions to simulate the AND, OR, and NOT gates, (and possibly XOR gates). These functions will be very simple.
+
+Your program should ask the user to input the numbers to be added.  It should accept strings of 8 binary digits and print each step in the binary addition of the two strings, including any carries. Then the program should output the final result of the addition. 
+
+The program should respond gracefully (but not end) if the input is not a string of ones and zeros.
+
+Set up the program to repeat four times so that I can test it on four different sets of numbers without having to restart it each time.
+
+Hints:
+
+The input will be strings not actual binary numbers.  So a 1 is the ASCII character 1 not the number 1.
+It is possible that there will be a carry out of the most significant bit and you will need to include this in the answer so the answer might be 9 bits long.  
+
+The half-adder will have two inputs and will generate two outputs, a sum and a carry.  
+
+The full-adder will have three inputs, the two bits to be added plus the carry-in.  It will generate two outputs, the sum and the carry out. 
+ 
+The carry-out from one iteration of the full-adder will be the carry-in the next time the full-adder routine is called.
+
+Remember to go from the least significant bits (the right most bits) to the most significant bits when performing the addition.  
+
+
