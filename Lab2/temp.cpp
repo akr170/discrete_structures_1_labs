@@ -142,6 +142,7 @@ string bits2str(unsigned short int num_copy)
         if (counter == 4){
             temp = " ";
             str = temp.append(str);
+            counter = 0;
         }
         if ((num & 0x01) == 0){
             temp = "0";
