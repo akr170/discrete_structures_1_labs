@@ -61,7 +61,7 @@ bool evl_prems(bool p, bool q, bool r)
     bool premise;
     // PREMISE EVALUATED HERE.
     // Please change the line below to change premise.
-    premise = evl_cond(p || q, r) || evl_bidir(!q, p) || ((!r || q) ^ p);
+    premise = evl_cond(p || q, r) && evl_bidir(!q, p) && ((!r || q) ^ p);
     // End of premise evaluation
     return premise;
 }
@@ -124,8 +124,8 @@ void disp_truth_table(bool * p, bool * q, bool * r, bool * prem, bool * conc)
     */
     cout << "Row\tP\tQ\tR\tPrem\tConcl" << endl;
     for ( int i = 0; i < 8; ++i ){
-        printf("%d\t%c\t%c\t%c\t%c\t%c\n", i, b2c(*(p+i)), b2c(*(q+i)),
-            b2c(*(r+i)), b2c(*(prem+i)), b2c(*(conc+i)));
+        printf("%d\t%c\t%c\t%c\t%c\t%c\n", i, b2c(p[i]), b2c(q[i]),
+            b2c(r[i]), b2c(prem[i]), b2c(conc[i]));
     }
 }
 
