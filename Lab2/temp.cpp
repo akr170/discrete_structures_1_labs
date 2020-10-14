@@ -132,30 +132,38 @@ adret full_adder(bool p, bool q, bool carry_in)
 }
 
 
-string bits2str(unsigned short int num_copy)
+string bits2str(unsigned short int num)
 {
-    unsigned short int num, counter = 0;
+    /*
+    Converts the bits to a string with a space every 4th binary digit
+
+    Notes:
+        1. 0 converts to "0000 0000"
+        2. 1 convers to "0000 0001"
+        3. 11111111 convers to "1111 1111"
+        4. 111111111 convers to "1 1111 1111"
+
+    Args:
+        num: The sum of two user supplied 8 bit binary number
+    
+    Return:
+        A string representing the sum of two 8 bit binary numbers
+    */
+    unsigned short int counter = 0;
+    int atleast = 8;
     string temp, str = "";
 
-    num = num_copy;
-    for ( int i = 0; i < 8; ++i ){
+    while ((num > 0) || (atleast > 0)){
         if (counter == 4){
             temp = " ";
             str = temp.append(str);
             counter = 0;
         }
-        if ((num & 0x01) == 0){
-            temp = "0";
-        } else {
-            temp = "1";
-        }
+        temp = (num & 0x01) == 0 ? "0" : "1";
         str = temp.append(str);
         num >>= 1;
         ++counter;
-    }
-    if ((num & 0x01) == 1) {
-        temp = "1 ";
-        str = temp.append(str);
+        --atleast;
     }
     return str;
 }
@@ -163,8 +171,18 @@ string bits2str(unsigned short int num_copy)
 
 unsigned short int str2bits(string s)
 {
+    /*
+    Converts a string representing 8 bit binary number to an unsigned int.
+    Position of 1s in string remains the same as 1s in the unsigned int.
+
+    Args:
+        num: A string representing an 8 bit binary number
+    
+    Return:
+        Bits in string converted to an unsigned int
+    */
     unsigned short int num = 0;
-    for ( int i = 0; i < s.size(); i++ ){
+    for ( unsigned short int i = 0; i < s.size(); i++ ){
         num <<= 1;
         if ((int)s[i] == 49) {
             num = num | 0x01;
