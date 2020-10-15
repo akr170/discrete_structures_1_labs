@@ -132,6 +132,66 @@ adret full_adder(bool p, bool q, bool carry_in)
 }
 
 
+string bits2str(unsigned short int num)
+{
+    /*
+    Converts the bits to a string with a space every 4th binary digit
+
+    Notes:
+        1. 0 converts to "0000 0000"
+        2. 1 convers to "0000 0001"
+        3. 11111111 convers to "1111 1111"
+        4. 111111111 convers to "1 1111 1111"
+
+    Args:
+        num: The sum of two user supplied 8 bit binary number
+    
+    Return:
+        A string representing the sum of two 8 bit binary numbers
+    */
+    unsigned short int counter = 0;
+    short int atleast = 8;
+    string temp, str = "";
+
+    while ((num > 0) || (atleast > 0)){
+        if (counter == 4){
+            temp = " ";
+            str = temp.append(str);
+            counter = 0;
+        }
+        temp = (num & 0x01) == 0 ? "0" : "1";
+        str = temp.append(str);
+        num >>= 1;
+        ++counter;
+        --atleast;
+    }
+    return str;
+}
+
+
+unsigned short int str2bits(string s)
+{
+    /*
+    Converts a string representing 8 bit binary number to an unsigned int.
+    Position of 1s in string remains the same as 1s in the unsigned int.
+
+    Args:
+        num: A string representing an 8 bit binary number
+    
+    Return:
+        Bits in string converted to an unsigned int
+    */
+    unsigned short int num = 0;
+    for ( unsigned short int i = 0; i < s.size(); i++ ){
+        num <<= 1;
+        if ((int)s[i] == 49) {
+            num = num | 0x01;
+        }
+    }
+    return num;
+}
+
+
 bool check_if_binary_number(string num)
 {
     /*
@@ -164,126 +224,6 @@ bool check_if_binary_number(string num)
 }
 
 
-void str2bin(string num, bool * bin)
-{
-    /*
-    Takes in a user provided string representing an 8 bit binary number and
-    stores individual characters of that string in a boolean array.
-    
-    Notes:
-        The bits are stored in the boolean array in such as way that the 0th
-        element represents the least significant bit.
-    
-    Args:
-        num: a user provided string representing an 8-bit binary number
-        bin: an boolean array that is used for storing the 8-bits from num
-    
-    Returns:
-        None
-    */
-    int ptr = 0;
-
-    for ( int i = ((int)num.size() - 1); i >= 0; --i ){
-        if ((int)num[i] == 48){
-            *(bin + ptr) = 0;
-        } else {
-            *(bin + ptr) = 1;
-        }
-        ++ptr;
-    }
-}
-
-
-string reverse_string(string num)
-{
-    /*
-    Takes in a string and returns the reversed string.
-
-    Notes:
-        1010 1000 will become 0001 0101
-    
-    Args:
-        num: a string
-    
-    Returns:
-        The reversed string
-    */
-    string ret = "";
-    for ( int i = ((int)num.size() - 1); i >= 0; --i ){
-        ret.push_back(num[i]);
-    }
-    return ret;
-}
-
-
-string formatbinstring(string num)
-{
-    /*
-    Takes in a string and adds spaces after every 4th character starting from
-    the right most character going towards the left most character.
-
-    Notes:
-        if input is 00101111, the return will be 0010 1111
-
-    Args:
-        num: a string
-    
-    Returns:
-        string with a space added after every 4th character starting from left.
-    */
-    string temp = "";
-    string ret;
-    int counter = 0;
-    for ( int i = ((int)num.size() - 1); i >= 0; --i ){
-        if ((counter % 4 == 0) && (counter != 0)) {
-            temp.append(" ");
-        }
-        temp.push_back(num[i]);
-        ++counter;
-    }
-    ret = reverse_string(temp);
-    return ret;
-}
-
-
-string bin2str(bool * num, int arr_size=9)
-{
-    /*
-    Takes in a boolean array representing a binary number and converts it to a
-    string.
-
-    Notes:
-        If the input is { 1, 0, 1, 1, 0, 1, 0, 0, 0 }, the return string will be
-        "0010 1101"
-        If the input is { 1, 0, 1, 1, 0, 1, 0, 0, 1 }, the return string will be
-        "1 0010 1101"
-    
-    Args:
-        num: a boolean array with elements representing bits of a binary number
-        arr_size: size of the 'num' array
-    
-    Returns:
-        binary number converted to string and formatted according to the
-        CS250 guidelines
-    */
-    bool significant_flag = false;
-    string ret = "";
-
-    for ( int i = (arr_size - 1); i >= 0; --i ){
-        if (significant_flag || num[i]){
-            if (num[i]) {
-                ret.push_back('1');
-            } else {
-                ret.push_back('0');
-            }
-        }
-        significant_flag = true;
-    }
-    ret = formatbinstring(ret);
-    return ret;
-}
-
-
 string add_binary_nums(string str_bin1, string str_bin2)
 {
     /*
@@ -298,26 +238,25 @@ string add_binary_nums(string str_bin1, string str_bin2)
         A string representing the sum of two user provided binary numbers
     */
     string str_ret;
-    bool bin1[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-    bool bin2[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-    bool result[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    unsigned short int bin1, bin2, result = 0;
     bool carry_in = 0;
     adret adder_ret;
 
-    str2bin(str_bin1, bin1); //store str_bin1 characters into boolean array bin1
-    str2bin(str_bin2, bin2); //store str_bin1 characters into boolean array bin2
-    cout << "The numbers to be added are " << bin2str(bin1) << " and "
-        << bin2str(bin2) << endl;
+    bin1 = str2bits(str_bin1);
+    bin2 = str2bits(str_bin2);
+    cout << "The numbers to be added are " << bits2str(bin1) << " and "
+        << bits2str(bin2) << endl;
 
     for ( int i = 0; i < 8; ++i ){
         // add binary numbers bit by bit
-        adder_ret = full_adder(*(bin1 + i), *(bin2 + i), carry_in);
+        adder_ret = full_adder(bin1 & 0x01, bin2 & 0x01, carry_in);
         carry_in = adder_ret.carry;
-        result[i] = adder_ret.sum; //store the sum bit in the results
+        result = result | (adder_ret.sum << i); //store the sum in the results
+        bin1 >>= 1;
+        bin2 >>= 1;
     }
-    result[8] = adder_ret.carry; //append the last carry to the 9th position
-
-    str_ret = bin2str(result); //covert the result to properly formatted string
+    result = result | (adder_ret.carry << 8);
+    str_ret = bits2str(result); //covert the result to properly formatted string
     return str_ret;
 }
 
