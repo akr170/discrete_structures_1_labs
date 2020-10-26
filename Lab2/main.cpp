@@ -19,6 +19,45 @@ struct adret
 };
 
 
+bool and_gate(bool p, bool q);
+bool or_gate(bool p, bool q);
+bool not_gate(bool p);
+adret half_adder(bool p, bool q);
+adret full_adder(bool p, bool q, bool carry_in);
+string bits2str(unsigned short int num);
+unsigned short int str2bits(string s);
+bool check_if_binary_number(string num);
+string add_binary_nums(string str_bin1, string str_bin2);
+
+
+int main()
+{
+    /*
+    Main function
+    */
+    string bin1, bin2, sum;
+    bool check1, check2;
+    
+    cout << "Student Name: Ashish Kumar" << endl;
+
+    for ( int i = 0; i < 4; ++i){
+        cout << endl;
+        cout << "Enter 1st 8-bit binary number: ";
+        cin >> bin1;
+        cout << "Enter 2nd 8-bit binary number: ";
+        cin >> bin2;
+        cout << endl;
+        check1 = check_if_binary_number(bin1);
+        check2 = check_if_binary_number(bin2);
+        if (check1 && check2){
+            sum = add_binary_nums(bin1, bin2);
+            cout << "The answer is " << sum << endl;
+        }
+    }
+    return 0;
+}
+
+
 bool and_gate(bool p, bool q)
 {
     /*
@@ -258,32 +297,4 @@ string add_binary_nums(string str_bin1, string str_bin2)
     result = result | (adder_ret.carry << 8);
     str_ret = bits2str(result); //covert the result to properly formatted string
     return str_ret;
-}
-
-
-int main()
-{
-    /*
-    Main function
-    */
-    string bin1, bin2, sum;
-    bool check1, check2;
-    
-    cout << "Student Name: Ashish Kumar" << endl;
-
-    for ( int i = 0; i < 4; ++i){
-        cout << endl;
-        cout << "Enter 1st 8-bit binary number: ";
-        cin >> bin1;
-        cout << "Enter 2nd 8-bit binary number: ";
-        cin >> bin2;
-        cout << endl;
-        check1 = check_if_binary_number(bin1);
-        check2 = check_if_binary_number(bin2);
-        if (check1 && check2){
-            sum = add_binary_nums(bin1, bin2);
-            cout << "The answer is " << sum << endl;
-        }
-    }
-    return 0;
 }
