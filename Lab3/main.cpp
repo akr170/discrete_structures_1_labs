@@ -1,7 +1,7 @@
 /*
 NAME: Ashish Kumar
 ASSIGNMENT: Lab 3
-SOURCES: Course instructor video
+SOURCES: Course instructor video, https://gmplib.org/manual/
 */
 
 #include <gmp.h>
