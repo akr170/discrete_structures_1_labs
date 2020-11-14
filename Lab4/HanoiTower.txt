@@ -1,0 +1,46 @@
+In this lab you are to implement a recursive solution to the Tower of Hanoi.  The Tower of Hanoi is discussed in example 5.6.5 of the book.  
+
+The idea here is to think of this problem recursively.  Suppose the Tower of Hanoi has three disks. To solve the problem you go through the process of moving the top 2 disks from Pole 1 to Pole 2.  Then you move the bottom disk to Pole 3 and then go through the process of moving the 2 disks but this time from Pole 2 to Pole 3.
+
+Suppose the Tower has n disks.  Go through the process of moving n-1 disks to Pole 2.  Then move the bottom disk to Pole 3.  Then repeat the process of moving n-1 disks but this time from Pole 2 to Pole 3.
+
+The task is to move all the disks from Pole 1 to another pole.  It doesn't matter if they end up on Pole 2 or Pole 3.  If possible,  make the first move from pole 1 to pole 3.  
+
+Here is a sample output:
+
+Enter how many disks:  5
+
+RECURSION:
+moved disk from 1 to 3
+moved disk from 1 to 2
+moved disk from 3 to 2
+moved disk from 1 to 3
+moved disk from 2 to 1
+moved disk from 2 to 3
+moved disk from 1 to 3
+moved disk from 1 to 2
+moved disk from 3 to 2
+moved disk from 3 to 1
+moved disk from 2 to 1
+moved disk from 3 to 2
+moved disk from 1 to 3
+moved disk from 1 to 2
+moved disk from 3 to 2
+moved disk from 1 to 3
+moved disk from 2 to 1
+moved disk from 2 to 3
+moved disk from 1 to 3
+moved disk from 2 to 1
+moved disk from 3 to 2
+moved disk from 3 to 1
+moved disk from 2 to 1
+moved disk from 2 to 3
+moved disk from 1 to 3
+moved disk from 1 to 2
+moved disk from 3 to 2
+moved disk from 1 to 3
+moved disk from 2 to 1
+moved disk from 2 to 3
+moved disk from 1 to 3
+
+
