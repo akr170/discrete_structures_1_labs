@@ -21,7 +21,7 @@ int main()
     cout << "Student Name: Ashish Kumar" << endl;
 
     while (num_of_disks <= 0){
-        cout << "Enter number of disks between 1 and " << INT_MAX << ": ";
+        cout << "Enter number of disks between 1 and " << INT8_MAX << ": ";
         cin >> num_of_disks;
         if (num_of_disks <= 0){
             cout << "Number of disks cannot be " << num_of_disks << endl;

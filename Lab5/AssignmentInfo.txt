@@ -1,0 +1,7 @@
+This program will generate the solution to a second order linear homogeneous recurrence relation with constant coefficients.   In other words, the program will find the solution to a recurrence relation that looks like:  
+
+ak = Aak-1 + Bak-2  with initial conditions a0 and a1.  
+
+Your program should prompt the user to input values for A, B, a0 and a1.  (These values are not necessarily integers.  They might be decimal numbers.)  The program should handle the case of distinct real roots and the case of a single real root for the characteristic equation.  The program should print the formula for the sequence and the first 6 terms of the sequence.  In the case of complex roots, the program should alert the user to that situation and go on to the next relation.  It is not necessary to solve the relation in this case.    
+
+The program should run 4 times.  You do not need to check for incorrect input.
