@@ -1,6 +1,6 @@
 /*
 NAME: Ashish Kumar
-ASSIGNMENT: Lab 3
+ASSIGNMENT: Lab 4
 SOURCES: hackerearth.com
 */
 
